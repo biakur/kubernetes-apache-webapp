@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-deployment
+  #namespace: httpd-namespace-nautilus
+  labels:
+    app: httpd-web-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app:  httpd-web-app
+  template:
+    metadata:
+      labels:
+        app: httpd-web-app
+    spec:
+      containers:
+        - name: httpd-container
+          image: rodrigue06/apache_tin_dog_image_app:v1.3
+          ports:
+            - containerPort: 80
